@@ -22,7 +22,7 @@ public class Config {
 
     private File configFile;
 
-    Logger log = LoggerFactory.getLogger(Config.class);
+    private Logger log = LoggerFactory.getLogger(Config.class);
 
     public static Config app() {
         if (instance == null) {
@@ -41,10 +41,10 @@ public class Config {
         this.configFile = this.path.getConfigFile();
         try {
             this.loadConfigurationFile();
+            this.db = new DatabaseConfiguration(instance);
         } catch (IOException | JAXBException e) {
             log.error("Configuration error", e);
         }
-        this.db = new DatabaseConfiguration(instance);
     }
 
     private void loadConfigurationFile() throws IOException, JAXBException {

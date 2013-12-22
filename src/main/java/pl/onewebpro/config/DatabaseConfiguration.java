@@ -1,11 +1,45 @@
 package pl.onewebpro.config;
 
-/**
- * Created by loki on 22.12.13.
- */
+import com.avaje.ebean.EbeanServer;
+import com.avaje.ebean.EbeanServerFactory;
+import com.avaje.ebean.config.DataSourceConfig;
+import com.avaje.ebean.config.ServerConfig;
+import org.apache.commons.io.FileUtils;
+import pl.onewebpro.helpers.MD5;
+
+import java.io.File;
+import java.io.IOException;
+
 public class DatabaseConfiguration {
 
-    public DatabaseConfiguration(Config instance) {
+    private ServerConfig config = new ServerConfig();
+    private DataSourceConfig dataSourceConfig = new DataSourceConfig();
+    private EbeanServer server;
 
+
+    public DatabaseConfiguration(Config instance) throws IOException {
+        config.setName("db");
+        dataSourceConfig.setDriver("org.h2.Driver");
+        dataSourceConfig.setUsername(instance.getData().user);
+        dataSourceConfig.setPassword(MD5._(instance.getData().user));
+        dataSourceConfig.setUrl("jdbc:h2:" + instance.getPath().getPath() + PathConfiguration.DS + "db");
+        config.setDataSourceConfig(dataSourceConfig);
+        config.setDdlGenerate(true);
+        config.setDdlRun(true);
+        config.setDefaultServer(false);
+        config.setRegister(false);
+        server = EbeanServerFactory.create(config);
+    }
+
+    public ServerConfig getConfig() {
+        return config;
+    }
+
+    public DataSourceConfig getDataSourceConfig() {
+        return dataSourceConfig;
+    }
+
+    public EbeanServer getServer() {
+        return server;
     }
 }
