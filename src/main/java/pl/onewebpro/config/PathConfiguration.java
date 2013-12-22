@@ -2,9 +2,6 @@ package pl.onewebpro.config;
 
 import java.io.File;
 
-/**
- * Created by loki on 22.12.13.
- */
 public class PathConfiguration {
 
     public static final String BASE_DIR_LINUX = System.getProperty("user.home");
