@@ -1,4 +1,4 @@
-package views;
+package pl.onewebpro;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
