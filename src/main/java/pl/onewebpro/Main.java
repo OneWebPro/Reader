@@ -10,16 +10,19 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pl.onewebpro.config.Config;
 
 public class Main extends Application {
 
+
+    private Config config = Config.app();
 
     private double initialX = 0;
     private double initialY = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../views/sample.fxml"));
         addDragListeners(root);
         setUserAgentStylesheet(STYLESHEET_MODENA);
         primaryStage.initStyle(StageStyle.TRANSPARENT);

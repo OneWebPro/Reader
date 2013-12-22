@@ -1,18 +1,18 @@
 package pl.onewebpro.config;
 
-import org.xmappr.Element;
-import org.xmappr.RootElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Created by loki on 22.12.13.
- */
-@RootElement("configuration")
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlRootElement(name = "configuration")
 public class ConfigurationSource {
 
-    @Element(defaultValue  = "00.00.01")
-    public String version;
+    @XmlAttribute
+    public String version = "00.00.01";
 
-    @Element(defaultValue  = "develop")
+    @XmlAttribute
     public String deploy = "develop";
 
     public String user = System.getProperty("user.name");

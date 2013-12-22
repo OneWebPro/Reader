@@ -1,14 +1,15 @@
 package pl.onewebpro.config;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xmappr.Xmappr;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.io.*;
 
-/**
- * Created by loki on 22.12.13.
- */
 public class Config {
 
     public static Config instance;
@@ -40,23 +41,23 @@ public class Config {
         this.configFile = this.path.getConfigFile();
         try {
             this.loadConfigurationFile();
-        } catch (IOException e) {
+        } catch (IOException | JAXBException e) {
             log.error("Configuration error", e);
         }
         this.db = new DatabaseConfiguration(instance);
     }
 
-    private void loadConfigurationFile() throws IOException {
-        Reader xmlConfigReader = new FileReader(configFile);
-        Xmappr xm;
-        if (configFile.exists()) {
-            xm = new Xmappr(xmlConfigReader);
-            data = (ConfigurationSource) xm.fromXML(xmlConfigReader);
-        } else if (!configFile.exists()) {
-            if (configFile.createNewFile()) {
-                xm = new Xmappr(ConfigurationSource.class);
-                data = (ConfigurationSource) xm.fromXML(xmlConfigReader);
-            }
+    private void loadConfigurationFile() throws IOException, JAXBException {
+        JAXBContext jaxContext = JAXBContext.newInstance(ConfigurationSource.class);
+        if (!configFile.exists()) {
+            data = new ConfigurationSource();
+            FileUtils.forceMkdir(new File(configFile.getParent()));
+            Marshaller m = jaxContext.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            m.marshal(data, configFile);
+        } else {
+            Unmarshaller um = jaxContext.createUnmarshaller();
+            data = (ConfigurationSource) um.unmarshal(new FileReader(configFile));
         }
     }
 
