@@ -20,7 +20,6 @@
                 <Button mnemonicParsing="false" text="Button"/>
             </items>
         </ToolBar>
-        <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="536.0"
-                    prefWidth="800.0" xmlns:fx="http://javafx.com/fxml"/>
+        <ScrollPane prefHeight="536.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml"/>
     </children>
 </VBox>
