@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8"
+<VBox minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0"  maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefWidth="200.0" xmlns:fx="http://javafx.com/fxml">
@@ -14,12 +14,25 @@
                 <Button mnemonicParsing="false" text="Button"/>
             </items>
         </ToolBar>
-        <ToolBar prefWidth="200.0" xmlns:fx="http://javafx.com/fxml">
+        <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" xmlns:fx="http://javafx.com/fxml">
             <items>
                 <Button mnemonicParsing="false" text="Button"/>
                 <Button mnemonicParsing="false" text="Button"/>
+                <VBox alignment="TOP_RIGHT" prefWidth="682.0" xmlns="http://javafx.com/javafx/8"
+                      xmlns:fx="http://javafx.com/fxml/1">
+                    <children>
+                        <SplitMenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" text="SplitMenuButton"
+                                         xmlns:fx="http://javafx.com/fxml">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Action 1"/>
+                                <MenuItem mnemonicParsing="false" text="Action 2"/>
+                            </items>
+                        </SplitMenuButton>
+                    </children>
+                </VBox>
             </items>
         </ToolBar>
-        <ScrollPane prefHeight="536.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml"/>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="536.0"
+                    prefWidth="800.0" vbarPolicy="ALWAYS" xmlns:fx="http://javafx.com/fxml"/>
     </children>
 </VBox>
