@@ -4,7 +4,6 @@
 <?import javafx.embed.swing.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javax.swing.*?>
 
 <VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -12,25 +11,26 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Open" />
-                        <MenuItem mnemonicParsing="false" text="Import" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Open"/>
+                        <MenuItem mnemonicParsing="false" text="Import"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" text="About"/>
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
         <ToolBar prefWidth="200.0" xmlns:fx="http://javafx.com/fxml">
             <items>
-                <Button mnemonicParsing="false" text="Button" />
+                <Button mnemonicParsing="false" text="Button"/>
             </items>
         </ToolBar>
-        <SplitPane dividerPositions="0.29797979797979796" focusTraversable="true" prefHeight="160.0" prefWidth="200.0" VBox.vgrow="ALWAYS" xmlns:fx="http://javafx.com/fxml">
+        <SplitPane dividerPositions="0.29797979797979796" focusTraversable="true" prefHeight="160.0" prefWidth="200.0"
+                   VBox.vgrow="ALWAYS" xmlns:fx="http://javafx.com/fxml">
             <items>
                 <Accordion nodeOrientation="LEFT_TO_RIGHT" xmlns:fx="http://javafx.com/fxml">
                     <panes>
@@ -40,20 +40,27 @@
                                     <children>
                                         <ToolBar prefWidth="200.0" xmlns:fx="http://javafx.com/fxml">
                                             <items>
-                                                <Button mnemonicParsing="false" text="Button" />
+                                                <Button mnemonicParsing="false" text="Button"/>
                                             </items>
                                         </ToolBar>
-                                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="0.0" prefWidth="0.0" xmlns:fx="http://javafx.com/fxml">
+                                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER"
+                                                    prefHeight="0.0" prefWidth="0.0" VBox.vgrow="ALWAYS"
+                                                    xmlns:fx="http://javafx.com/fxml">
                                             <content>
                                                 <GridPane xmlns:fx="http://javafx.com/fxml">
                                                     <columnConstraints>
-                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+                                                                           prefWidth="100.0"/>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+                                                                           prefWidth="100.0"/>
                                                     </columnConstraints>
                                                     <rowConstraints>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                        vgrow="SOMETIMES"/>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                        vgrow="SOMETIMES"/>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                        vgrow="SOMETIMES"/>
                                                     </rowConstraints>
                                                 </GridPane>
                                             </content>
@@ -66,17 +73,26 @@
                 </Accordion>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                     <children>
-                        <SwingNode xmlns:fx="http://javafx.com/fxml">
-                        </SwingNode>
-                        <SwingNode xmlns:fx="http://javafx.com/fxml">
-                        </SwingNode>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" HBox.hgrow="ALWAYS"
+                                    xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                            <content>
+                                <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                                    <children>
+                                        <SwingNode xmlns:fx="http://javafx.com/fxml">
+                                        </SwingNode>
+                                        <SwingNode xmlns:fx="http://javafx.com/fxml">
+                                        </SwingNode>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
                     </children>
                 </HBox>
             </items>
         </SplitPane>
         <ToolBar prefWidth="200.0" xmlns:fx="http://javafx.com/fxml">
             <items>
-                <ProgressBar prefWidth="200.0" progress="0.0" />
+                <ProgressBar prefWidth="200.0" progress="0.0"/>
             </items>
         </ToolBar>
     </children>
