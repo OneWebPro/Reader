@@ -1,13 +1,14 @@
 package pl.onewebpro.controllers;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainController {
+public class MainController implements Initializable {
 
     private double initialX = 0;
     private double initialY = 0;
@@ -15,9 +16,12 @@ public class MainController {
     @FXML
     private ToolBar menu;
 
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         addDragListeners(menu);
     }
+
+
 
     private void addDragListeners(final Node n){
         n.setOnMousePressed(me -> {
@@ -43,5 +47,4 @@ public class MainController {
             }
         });
     }
-
 }
