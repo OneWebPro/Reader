@@ -10,15 +10,20 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pl.onewebpro.data.ReaderFile;
+import pl.onewebpro.data.ReaderFolder;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 
-public class MenuController implements Initializable {
+public class MenuController extends Observable implements Initializable {
     @FXML
     public MenuItem open;
 
@@ -47,16 +52,18 @@ public class MenuController implements Initializable {
 
     private Window stage;
 
-    FileChooser.ExtensionFilter pdfExt = new FileChooser.ExtensionFilter("Acrobat PDF documents", "*.pdf");
-    FileChooser.ExtensionFilter xpsExt = new FileChooser.ExtensionFilter("XPS documents", "*.xps");
-    FileChooser.ExtensionFilter cbzExt = new FileChooser.ExtensionFilter("Comic book documents", "*.cbz");
+    private Logger log = LoggerFactory.getLogger(MenuController.class);
+
+    private FileChooser.ExtensionFilter pdfExt = new FileChooser.ExtensionFilter("Acrobat PDF documents", "*.pdf");
+    private FileChooser.ExtensionFilter xpsExt = new FileChooser.ExtensionFilter("XPS documents", "*.xps");
+    private FileChooser.ExtensionFilter cbzExt = new FileChooser.ExtensionFilter("Comic book documents", "*.cbz");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             aboutWindow = new Scene(FXMLLoader.load(getClass().getResource("../../../views/about.fxml")));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Not found about.fxml",e);
         }
 
         //Close button
@@ -68,7 +75,7 @@ public class MenuController implements Initializable {
             getStage();
             File file = fileChooser.showOpenDialog(stage);
             if (file != null && file.isFile()) {
-                //TODO:Open file
+                notifyObservers(new ReaderFile(file));
             }
         });
 
@@ -76,12 +83,12 @@ public class MenuController implements Initializable {
             getStage();
             File file = directoryChooser.showDialog(stage);
             if (file != null && file.isDirectory()) {
-                //TODO:import folder
+                notifyObservers(new ReaderFolder(file));
             }
         });
 
-        about.setOnAction(ae ->{
-            if(aboutStage.getScene() == null){
+        about.setOnAction(ae -> {
+            if (aboutStage.getScene() == null) {
                 aboutStage.setScene(aboutWindow);
                 aboutStage.setTitle("About");
                 aboutStage.initModality(Modality.WINDOW_MODAL);
@@ -91,7 +98,7 @@ public class MenuController implements Initializable {
 
     }
 
-    private void getStage(){
+    private void getStage() {
         if (stage == null) {
             stage = menuBar.getScene().getWindow();
         }
