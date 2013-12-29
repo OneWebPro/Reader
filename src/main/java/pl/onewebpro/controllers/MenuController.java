@@ -85,10 +85,8 @@ public class MenuController implements Initializable {
                 aboutStage.setScene(aboutWindow);
                 aboutStage.setTitle("About");
                 aboutStage.initModality(Modality.WINDOW_MODAL);
-                aboutStage.show();
-            }else{
-                aboutStage.show();
             }
+            aboutStage.show();
         });
 
     }
