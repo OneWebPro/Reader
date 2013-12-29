@@ -46,28 +46,28 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        fileChooser.getExtensionFilters().addAll(pdfExt,xpsExt,cbzExt);
+        fileChooser.getExtensionFilters().addAll(pdfExt, xpsExt, cbzExt);
         //Close button
         exit.setOnAction(ae -> {
             System.exit(0);
         });
 
-        open.setOnAction(ae ->{
-            if(stage == null) {
+        open.setOnAction(ae -> {
+            if (stage == null) {
                 stage = menuBar.getScene().getWindow();
             }
             File file = fileChooser.showOpenDialog(stage);
-            if (file != null) {
+            if (file != null && file.isFile()) {
                 //TODO:Open file
             }
         });
 
         importFolder.setOnAction(ae -> {
-            if(stage == null){
+            if (stage == null) {
                 stage = menuBar.getScene().getWindow();
             }
-            File file =  directoryChooser.showDialog(stage);
-            if (file != null) {
+            File file = directoryChooser.showDialog(stage);
+            if (file != null && file.isDirectory()) {
                 //TODO:import folder
             }
         });
