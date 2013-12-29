@@ -18,14 +18,9 @@ public class Main extends Application {
 
     private Config config = Config.app();
 
-    private double initialX = 0;
-    private double initialY = 0;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../../views/sample.fxml"));
-        ToolBar bar = (ToolBar) root.lookup("#menu");
-        addDragListeners(bar);
+        Parent root = FXMLLoader.load(getClass().getResource("../../views/main.fxml"));
         setUserAgentStylesheet(STYLESHEET_MODENA);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("OneWebPro Reader");
@@ -33,36 +28,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    private void addDragListeners(final Node n){
-        n.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                if(me.getButton()!=MouseButton.MIDDLE)
-                {
-                    initialX = me.getSceneX();
-                    initialY = me.getSceneY();
-                }
-                else
-                {
-                    n.getScene().getWindow().centerOnScreen();
-                    initialX = n.getScene().getWindow().getX();
-                    initialY = n.getScene().getWindow().getY();
-                }
 
-            }
-        });
-
-        n.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                if(me.getButton()!=MouseButton.MIDDLE)
-                {
-                    n.getScene().getWindow().setX( me.getScreenX() - initialX );
-                    n.getScene().getWindow().setY( me.getScreenY() - initialY);
-                }
-            }
-        });
-    }
 
 
     public static void main(String[] args) {
