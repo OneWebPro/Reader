@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -23,7 +24,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../../views/sample.fxml"));
-        addDragListeners(root);
+        ToolBar bar = (ToolBar) root.lookup("#menu");
+        addDragListeners(bar);
         setUserAgentStylesheet(STYLESHEET_MODENA);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("OneWebPro Reader");
