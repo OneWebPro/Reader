@@ -25,7 +25,7 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Close button
         exit.setOnAction(ae -> {
-            System.exit(1);
+            System.exit(0);
         });
     }
 }

@@ -13,7 +13,7 @@
                 <Button mnemonicParsing="false" text="Button"/>
             </items>
         </ToolBar>
-        <SplitPane dividerPositions="0.29797979797979796" focusTraversable="true" prefHeight="160.0" prefWidth="200.0"
+        <SplitPane dividerPositions="0.2" focusTraversable="true" prefHeight="160.0" prefWidth="200.0"
                    VBox.vgrow="ALWAYS" xmlns:fx="http://javafx.com/fxml">
             <items>
                 <Accordion nodeOrientation="LEFT_TO_RIGHT" xmlns:fx="http://javafx.com/fxml">
