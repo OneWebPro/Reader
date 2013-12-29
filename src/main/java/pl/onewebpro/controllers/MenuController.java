@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -35,6 +36,8 @@ public class MenuController implements Initializable {
 
     final FileChooser fileChooser = new FileChooser();
 
+    final DirectoryChooser directoryChooser = new DirectoryChooser();
+
     private Window stage;
 
     FileChooser.ExtensionFilter pdfExt = new FileChooser.ExtensionFilter("Acrobat PDF documents", "*.pdf");
@@ -43,18 +46,29 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        fileChooser.getExtensionFilters().addAll(pdfExt,xpsExt,cbzExt);
         //Close button
         exit.setOnAction(ae -> {
             System.exit(0);
         });
 
         open.setOnAction(ae ->{
-            fileChooser.getExtensionFilters().addAll(pdfExt,xpsExt,cbzExt);
-            File file = fileChooser.showOpenDialog(stage);
-            if(stage == null)
+            if(stage == null) {
                 stage = menuBar.getScene().getWindow();
+            }
+            File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 //TODO:Open file
+            }
+        });
+
+        importFolder.setOnAction(ae -> {
+            if(stage == null){
+                stage = menuBar.getScene().getWindow();
+            }
+            File file =  directoryChooser.showDialog(stage);
+            if (file != null) {
+                //TODO:import folder
             }
         });
 
