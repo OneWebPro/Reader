@@ -13,6 +13,7 @@ import javafx.stage.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -57,6 +58,7 @@ public class MenuController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         //Close button
         exit.setOnAction(ae -> {
             System.exit(0);
