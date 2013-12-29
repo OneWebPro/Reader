@@ -1,16 +1,18 @@
 package pl.onewebpro.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.stage.Window;
+import javafx.stage.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,6 +40,10 @@ public class MenuController implements Initializable {
 
     final DirectoryChooser directoryChooser = new DirectoryChooser();
 
+    final Stage aboutStage = new Stage();
+
+    private Scene aboutWindow;
+
     private Window stage;
 
     FileChooser.ExtensionFilter pdfExt = new FileChooser.ExtensionFilter("Acrobat PDF documents", "*.pdf");
@@ -46,7 +52,11 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        fileChooser.getExtensionFilters().addAll(pdfExt, xpsExt, cbzExt);
+        try {
+            aboutWindow = new Scene(FXMLLoader.load(getClass().getResource("../../../views/about.fxml")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //Close button
         exit.setOnAction(ae -> {
             System.exit(0);
@@ -65,6 +75,17 @@ public class MenuController implements Initializable {
             File file = directoryChooser.showDialog(stage);
             if (file != null && file.isDirectory()) {
                 //TODO:import folder
+            }
+        });
+
+        about.setOnAction(ae ->{
+            if(aboutStage.getScene() == null){
+                aboutStage.setScene(aboutWindow);
+                aboutStage.setTitle("About");
+                aboutStage.initModality(Modality.WINDOW_MODAL);
+                aboutStage.show();
+            }else{
+                aboutStage.show();
             }
         });
 
