@@ -22,7 +22,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../../views/main.fxml"));
         setUserAgentStylesheet(STYLESHEET_MODENA);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+//        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("OneWebPro Reader");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
