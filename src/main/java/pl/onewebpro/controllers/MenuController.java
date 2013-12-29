@@ -3,6 +3,7 @@ package pl.onewebpro.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseButton;
 
@@ -18,9 +19,15 @@ public class MenuController implements Initializable {
     @FXML
     private ToolBar menu;
 
+    @FXML
+    private Button exit;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addDragListeners(menu);
+        exit.setOnAction(ev -> {
+            System.exit(0);
+        });
     }
 
     private void addDragListeners(final Node n){
