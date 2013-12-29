@@ -20,32 +20,26 @@ public class MainController {
     }
 
     private void addDragListeners(final Node n){
-        n.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                if(me.getButton()!= MouseButton.MIDDLE)
-                {
-                    initialX = me.getSceneX();
-                    initialY = me.getSceneY();
-                }
-                else
-                {
-                    n.getScene().getWindow().centerOnScreen();
-                    initialX = n.getScene().getWindow().getX();
-                    initialY = n.getScene().getWindow().getY();
-                }
-
+        n.setOnMousePressed(me -> {
+            if(me.getButton()!= MouseButton.MIDDLE)
+            {
+                initialX = me.getSceneX();
+                initialY = me.getSceneY();
             }
+            else
+            {
+                n.getScene().getWindow().centerOnScreen();
+                initialX = n.getScene().getWindow().getX();
+                initialY = n.getScene().getWindow().getY();
+            }
+
         });
 
-        n.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                if(me.getButton()!=MouseButton.MIDDLE)
-                {
-                    n.getScene().getWindow().setX( me.getScreenX() - initialX );
-                    n.getScene().getWindow().setY( me.getScreenY() - initialY);
-                }
+        n.setOnMouseDragged(me -> {
+            if(me.getButton()!=MouseButton.MIDDLE)
+            {
+                n.getScene().getWindow().setX( me.getScreenX() - initialX );
+                n.getScene().getWindow().setY( me.getScreenY() - initialY);
             }
         });
     }
