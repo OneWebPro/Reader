@@ -60,6 +60,7 @@ public class MenuController extends Observable implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        fileChooser.getExtensionFilters().addAll(pdfExt,xpsExt,cbzExt);
         try {
             aboutWindow = new Scene(FXMLLoader.load(getClass().getResource("../../../views/about.fxml")));
         } catch (IOException e) {
