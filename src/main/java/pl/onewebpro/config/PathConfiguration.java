@@ -66,6 +66,10 @@ public class PathConfiguration {
         return this.getMainPath() + DS + "system" + DS;
     }
 
+    /**
+     * Return config file path
+     * @return String
+     */
     public String getConfigFilePath() {
         return this.getConfigPath() + CONFIG_FILE_NAME;
     }
