@@ -34,13 +34,10 @@ public class MainController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-            log.debug("MenuController notify working");
-            if (arg instanceof ReaderFile) {
-                log.debug("File loaded");
+            if (arg instanceof ReaderFile && !((ReaderFile) arg).getFile().isDirectory()) {
                 loadFile((ReaderFile) arg);
             }
             if (arg instanceof ReaderFolder) {
-                log.debug("Folder loaded");
                 loadFolder((ReaderFolder) arg);
             }
     }
