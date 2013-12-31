@@ -27,7 +27,7 @@ public class PathConfiguration {
      *
      * @return String
      */
-    public String getPath() {
+    public String getMainPath() {
         if (this.isWindows()) {
             return BASE_DIR + DS + NAME;
         } else {
@@ -63,7 +63,7 @@ public class PathConfiguration {
      * @return String
      */
     public String getConfigPath() {
-        return this.getPath() + DS + "system" + DS;
+        return this.getMainPath() + DS + "system" + DS;
     }
 
     public String getConfigFilePath() {
