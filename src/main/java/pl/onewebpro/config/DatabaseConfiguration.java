@@ -5,6 +5,7 @@ import com.avaje.ebean.EbeanServerFactory;
 import com.avaje.ebean.config.DataSourceConfig;
 import com.avaje.ebean.config.ServerConfig;
 import pl.onewebpro.helpers.MD5;
+import pl.onewebpro.models.Category;
 
 import java.io.IOException;
 
@@ -26,7 +27,15 @@ public class DatabaseConfiguration {
         config.setDdlRun(true);
         config.setDefaultServer(false);
         config.setRegister(false);
+        addClasses();
         server = EbeanServerFactory.create(config);
+    }
+
+    private void addClasses() {
+        config.addClass(Category.class);
+//        config.addClass(Document.class);
+//        config.addClass(Folder.class);
+//        config.addClass(FolderElement.class);
     }
 
     public ServerConfig getConfig() {
