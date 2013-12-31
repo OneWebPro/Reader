@@ -1,5 +1,8 @@
 package pl.onewebpro.controllers;
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -8,6 +11,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.onewebpro.actors.DataActor;
 import pl.onewebpro.data.ReaderFile;
 import pl.onewebpro.data.ReaderFolder;
 
@@ -26,6 +30,10 @@ public class MainController implements Initializable, Observer {
 
     @FXML
     private MenuController menuController;
+
+    private ActorSystem system = ActorSystem.create("MySystem");
+
+    private ActorRef data = system.actorOf(Props.create(DataActor.class), "data");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
