@@ -3,6 +3,7 @@ package pl.onewebpro.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseButton;
 import org.slf4j.Logger;
@@ -21,6 +22,9 @@ public class MainController implements Initializable, Observer {
     private Logger log = LoggerFactory.getLogger(MainController.class);
 
     @FXML
+    private MenuBar menu;
+
+    @FXML
     private MenuController menuController;
 
     @Override
@@ -30,7 +34,6 @@ public class MainController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o instanceof MenuController) {
             log.debug("MenuController notify working");
             if (arg instanceof ReaderFile) {
                 log.debug("File loaded");
@@ -40,7 +43,6 @@ public class MainController implements Initializable, Observer {
                 log.debug("Folder loaded");
                 loadFolder((ReaderFolder) arg);
             }
-        }
     }
 
     public void loadFile(ReaderFile file) {

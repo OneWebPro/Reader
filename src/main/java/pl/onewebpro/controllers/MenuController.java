@@ -76,7 +76,9 @@ public class MenuController extends Observable implements Initializable {
             getStage();
             File file = fileChooser.showOpenDialog(stage);
             if (file != null && file.isFile()) {
+                setChanged();
                 notifyObservers(new ReaderFile(file));
+                clearChanged();
             }
         });
 
@@ -84,7 +86,9 @@ public class MenuController extends Observable implements Initializable {
             getStage();
             File file = directoryChooser.showDialog(stage);
             if (file != null && file.isDirectory()) {
+                setChanged();
                 notifyObservers(new ReaderFolder(file));
+                clearChanged();
             }
         });
 
