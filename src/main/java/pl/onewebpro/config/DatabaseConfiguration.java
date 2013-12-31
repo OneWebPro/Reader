@@ -1,52 +1,26 @@
 package pl.onewebpro.config;
 
-import com.avaje.ebean.EbeanServer;
-import com.avaje.ebean.EbeanServerFactory;
-import com.avaje.ebean.config.DataSourceConfig;
-import com.avaje.ebean.config.ServerConfig;
+import org.hibernate.cfg.Configuration;
 import pl.onewebpro.helpers.MD5;
-import pl.onewebpro.models.Category;
 
 import java.io.IOException;
 
 public class DatabaseConfiguration {
 
-    private ServerConfig config = new ServerConfig();
-    private DataSourceConfig dataSourceConfig = new DataSourceConfig();
-    private EbeanServer server;
-
+    private String url = "";
+    private Configuration config = null;
 
     public DatabaseConfiguration(Config instance) throws IOException {
-        config.setName("db");
-        dataSourceConfig.setDriver("org.h2.Driver");
-        dataSourceConfig.setUsername(instance.getData().user);
-        dataSourceConfig.setPassword(MD5._(instance.getData().user));
-        dataSourceConfig.setUrl("jdbc:h2:" + instance.getPath().getMainPath() + PathConfiguration.DS + "db");
-        config.setDataSourceConfig(dataSourceConfig);
-        config.setDdlGenerate(true);
-        config.setDdlRun(true);
-        config.setDefaultServer(false);
-        config.setRegister(false);
-        addClasses();
-        server = EbeanServerFactory.create(config);
+        this.url = "jdbc:derby:" + instance.getPath().getConfigPath() + "data" + PathConfiguration.DS + "db;create=true";
+        String user = "admin";
+        String pass = "admin";
+        String schema = "ADMIN";
+        config = new Configuration()
+                .setProperty("hibernate.connection.url", this.url)
+                .setProperty("hibernate.default_schema",schema)
+                .setProperty("hibernate.connection.username",user)
+                .setProperty("hibernate.connection.password",pass)
+                .configure(getClass().getResource("../../../hibernate.cfg.xml"));
     }
 
-    private void addClasses() {
-        config.addClass(Category.class);
-//        config.addClass(Document.class);
-//        config.addClass(Folder.class);
-//        config.addClass(FolderElement.class);
-    }
-
-    public ServerConfig getConfig() {
-        return config;
-    }
-
-    public DataSourceConfig getDataSourceConfig() {
-        return dataSourceConfig;
-    }
-
-    public EbeanServer getServer() {
-        return server;
-    }
 }
